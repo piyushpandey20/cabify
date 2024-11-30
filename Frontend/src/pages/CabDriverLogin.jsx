@@ -1,17 +1,33 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CabDriverDataContext } from "../context/CabDriverContext";
+import axios from "axios";
 
 const CabDriverLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [captainData, setCaptainData] = useState({});
 
-  const submitHandler = (e) => {
+  const navigate = useNavigate();
+  const { cabDriver, setCabDriver } = useContext(CabDriverDataContext);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setCaptainData({
+    const cabDriver = {
       email,
       password,
-    });
+    };
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/cabcabDrivers/login`,
+      cabDriver
+    );
+
+    if (response.status === 200) {
+      const data = response.data;
+
+      setCabDriver(data.cabDriver);
+      localStorage.setItem("token", data.token);
+      navigate("/cabdriver-home");
+    }
     setEmail("");
     setPassword("");
   };
