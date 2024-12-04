@@ -10,6 +10,7 @@ import UserProtectWrapper from "./pages/UserProtectWrapper";
 import UserLogout from "./pages/UserLogout";
 import CabDriverHome from "./pages/CabDriverHome";
 import CabDriverProtectWrapper from "./pages/CabDriverProtectWrapper";
+import CabDriverLogout from "./pages/CabDriverLogout";
 
 const App = () => {
   return (
@@ -41,6 +42,14 @@ const App = () => {
           element={
             <CabDriverProtectWrapper>
               <CabDriverHome />
+            </CabDriverProtectWrapper>
+          }
+        />
+        <Route
+          path="/cabdriver/logout"
+          element={
+            <CabDriverProtectWrapper>
+              <CabDriverLogout/>
             </CabDriverProtectWrapper>
           }
         />

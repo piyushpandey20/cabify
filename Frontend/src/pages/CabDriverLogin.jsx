@@ -17,13 +17,12 @@ const CabDriverLogin = () => {
       password,
     };
     const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/cabcabDrivers/login`,
+      `${import.meta.env.VITE_BASE_URL}/cabDrivers/login`,
       cabDriver
     );
 
     if (response.status === 200) {
       const data = response.data;
-
       setCabDriver(data.cabDriver);
       localStorage.setItem("token", data.token);
       navigate("/cabdriver-home");
