@@ -11,6 +11,7 @@ import UserLogout from "./pages/UserLogout";
 import CabDriverHome from "./pages/CabDriverHome";
 import CabDriverProtectWrapper from "./pages/CabDriverProtectWrapper";
 import CabDriverLogout from "./pages/CabDriverLogout";
+import Riding from "./pages/Riding";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/cabdriver-login" element={<CabDriverLogin />} />
         <Route path="/cabdriver-signup" element={<CabDriverSignup />} />
+        <Route path="/riding" element={<Riding />} />
         <Route
           path="/home"
           element={
