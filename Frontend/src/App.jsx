@@ -12,6 +12,8 @@ import CabDriverHome from "./pages/CabDriverHome";
 import CabDriverProtectWrapper from "./pages/CabDriverProtectWrapper";
 import CabDriverLogout from "./pages/CabDriverLogout";
 import Riding from "./pages/Riding";
+import CabDriverRiding from "./pages/CabDriverRiding";
+import 'remixicon/fonts/remixicon.css'
 
 const App = () => {
   return (
@@ -23,6 +25,7 @@ const App = () => {
         <Route path="/cabdriver-login" element={<CabDriverLogin />} />
         <Route path="/cabdriver-signup" element={<CabDriverSignup />} />
         <Route path="/riding" element={<Riding />} />
+        <Route path="/cabdriver-riding" element={<CabDriverRiding />} />
         <Route
           path="/home"
           element={
