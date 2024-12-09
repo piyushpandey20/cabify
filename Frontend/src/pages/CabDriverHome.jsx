@@ -7,6 +7,7 @@ import gsap from "gsap";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import { SocketContext } from "../context/SocketContext";
 import { CabDriverDataContext } from "../context/CabDriverContext";
+import axios from "axios";
 
 const CabDriverHome = () => {
   const [ridePopupPanel, setRidePopupPanel] = useState(false);
@@ -45,6 +46,24 @@ const CabDriverHome = () => {
     setRide(data);
     setRidePopupPanel(true);
   });
+
+  async function confirmRide() {
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/rides/confirm`,
+      {
+        rideId: ride._id,
+        cabDriverId: cabDriver._id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    setRidePopupPanel(false);
+    setConfirmRidePopupPanel(true);
+  }
 
   useGSAP(
     function () {
@@ -110,6 +129,7 @@ const CabDriverHome = () => {
           ride={ride}
           setRidePopupPanel={setRidePopupPanel}
           setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+          confirmRide={confirmRide}
         />
       </div>
       <div
