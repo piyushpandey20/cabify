@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CabDriverDataContext } from "../context/CabDriverContext";
 
 const CabDriverDetails = () => {
+  const { cabDriver } = useContext(CabDriverDataContext);
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -10,7 +13,9 @@ const CabDriverDetails = () => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm7W9lCW-dzDW7_-Ub5UXxNiloGl6x49VPAQ&s"
             alt="driver-img"
           />
-          <h4 className="text-lg font-medium">Harsh Patel</h4>
+          <h4 className="text-lg font-medium capitalize">
+            {cabDriver.fullName.firstName + " " + cabDriver.fullName.lastName}
+          </h4>
         </div>
         <div>
           <h4 className="text-xl font-semibold">₹200</h4>

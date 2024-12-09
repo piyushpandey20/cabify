@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import CabDriverDetails from "../components/CabDriverDetails";
 import RidePopUp from "../components/RidePopUp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
+import { SocketContext } from "../context/SocketContext";
+import { CabDriverDataContext } from "../context/CabDriverContext";
 
 const CabDriverHome = () => {
   const [ridePopupPanel, setRidePopupPanel] = useState(true);
@@ -12,6 +14,36 @@ const CabDriverHome = () => {
 
   const ridePopupPanelRef = useRef(null);
   const confirmRidePopupPanelRef = useRef(null);
+
+  const { socket } = useContext(SocketContext);
+  const { cabDriver } = useContext(CabDriverDataContext);
+  useEffect(() => {
+    socket.emit("join", {
+      userId: cabDriver._id,
+      userType: "cabDriver",
+    });
+
+    const updateLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          socket.emit("update-location-cabDriver", {
+            userId: cabDriver._id,
+            location: {
+              ltd: position.coords.latitude,
+              lng: position.coords.longitude,
+            },
+          });
+        });
+      }
+    };
+    const locationInterval = setInterval(updateLocation, 10000);
+    updateLocation();
+    // return () => clearInterval(locationInterval);
+  });
+  socket.on("new-ride", (data) => {
+    console.log(data)
+    // setConfirmRidePopupPanel(true);
+  });
 
   useGSAP(
     function () {
