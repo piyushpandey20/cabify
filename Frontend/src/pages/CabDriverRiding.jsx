@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FinishRide from "../components/FinishRide";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import LiveTracking from "../components/LiveTracking";
 
 const CabDriverRiding = () => {
   const [finishRidePanel, setFinishRidePanel] = useState(false);
-
+  const location = useLocation();
+  const rideData = location.state?.ride;
   const finishRidePanelRef = useRef(null);
 
   useGSAP(
@@ -40,7 +42,8 @@ const CabDriverRiding = () => {
         </Link>
       </div>
 
-      <div className="h-4/5 ">
+      <div className="h-4/5 "> {/*h-full absolute*/}
+        {/* <LiveTracking/> */}
         <img
           className="h-full w-full object-cover"
           src="https://i.redd.it/g2r5ewz4tqk11.jpg"
@@ -52,7 +55,10 @@ const CabDriverRiding = () => {
           <i className="text-3xl text-gray-800 ri-arrow-up-wide-line"></i>
         </h5>
         <h4 className="text-xl font-semibold">4 KM away</h4>
-        <button onClick={() => setFinishRidePanel(true)} className="mt-5 bg-green-600 text-white font-semibold p-3 px-10 rounded-lg">
+        <button
+          onClick={() => setFinishRidePanel(true)}
+          className="mt-5 bg-green-600 text-white font-semibold p-3 px-10 rounded-lg"
+        >
           Complete Ride
         </button>
       </div>
@@ -60,7 +66,7 @@ const CabDriverRiding = () => {
         ref={finishRidePanelRef}
         className="fixed w-full z-10 translate-y-full bottom-0 bg-white px-3 py-10 pt-12"
       >
-        <FinishRide setFinishRidePanel={setFinishRidePanel}/>
+        <FinishRide ride={rideData} setFinishRidePanel={setFinishRidePanel} />
       </div>
     </div>
   );

@@ -10,8 +10,11 @@ import LookingForDriver from "../components/LookingForDriver";
 import WaitingForDriver from "../components/WaitingForDriver";
 import { SocketContext } from "../context/SocketContext";
 import { UserDataContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import LiveTracking from "../components/LiveTracking";
 
 const Home = () => {
+  const navigate = useNavigate();
   //useStates--
   const [panelOpen, setPanelOpen] = useState(false);
   const [vehiclePanel, setVehiclePanel] = useState(false);
@@ -43,6 +46,10 @@ const Home = () => {
     setVehicleFound(false);
     setWaitingForDriver(true);
     setRide(ride);
+  });
+  socket.on("ride-started", (ride) => {
+    setWaitingForDriver(false);
+    navigate("/riding", { state: { ride } });
   });
 
   //Function--
@@ -210,6 +217,7 @@ const Home = () => {
         alt="app-logo"
       />
       <div className="h-screen w-screen">
+        {/* <LiveTracking/> */}
         <img
           className="h-full w-full object-cover"
           src="https://i.redd.it/g2r5ewz4tqk11.jpg"
