@@ -106,7 +106,6 @@ const Home = () => {
         },
       }
     );
-    // console.log(response.data);
   }
 
   const submitHandler = (e) => {

@@ -9,8 +9,9 @@ import { SocketContext } from "../context/SocketContext";
 import { CabDriverDataContext } from "../context/CabDriverContext";
 
 const CabDriverHome = () => {
-  const [ridePopupPanel, setRidePopupPanel] = useState(true);
+  const [ridePopupPanel, setRidePopupPanel] = useState(false);
   const [confirmRidePopupPanel, setConfirmRidePopupPanel] = useState(false);
+  const [ride, setRide] = useState(null);
 
   const ridePopupPanelRef = useRef(null);
   const confirmRidePopupPanelRef = useRef(null);
@@ -39,10 +40,10 @@ const CabDriverHome = () => {
     const locationInterval = setInterval(updateLocation, 10000);
     updateLocation();
     // return () => clearInterval(locationInterval);
-  });
+  }, []);
   socket.on("new-ride", (data) => {
-    console.log(data)
-    // setConfirmRidePopupPanel(true);
+    setRide(data);
+    setRidePopupPanel(true);
   });
 
   useGSAP(
@@ -106,6 +107,7 @@ const CabDriverHome = () => {
         className="fixed w-full z-10 translate-y-full bottom-0 bg-white px-3 py-10 pt-12"
       >
         <RidePopUp
+          ride={ride}
           setRidePopupPanel={setRidePopupPanel}
           setConfirmRidePopupPanel={setConfirmRidePopupPanel}
         />
