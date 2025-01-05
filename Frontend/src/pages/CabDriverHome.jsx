@@ -8,6 +8,7 @@ import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import { SocketContext } from "../context/SocketContext";
 import { CabDriverDataContext } from "../context/CabDriverContext";
 import axios from "axios";
+import logo from "../img/logo.png"
 
 const CabDriverHome = () => {
   const [ridePopupPanel, setRidePopupPanel] = useState(false);
@@ -100,7 +101,7 @@ const CabDriverHome = () => {
       <div className="fixed p-6 top-0 flex items-center justify-between w-screen">
         <img
           className="w-20 "
-          src="https://logo-suggestion.renderforest.com/suggestions-images/20d9/dbba/20d9dbbaad8ecfeb85240ffcde495244.png"
+          src={logo}
           alt="app-logo"
         />
         <Link

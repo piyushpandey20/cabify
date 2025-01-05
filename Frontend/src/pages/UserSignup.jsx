@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
+import logo from "../img/logo.png"
 
 const UserSignup = () => {
   const [email, setEmail] = useState("");
@@ -47,7 +48,7 @@ const UserSignup = () => {
       <div>
         <img
           className="w-16 mb-10"
-          src="https://logo-suggestion.renderforest.com/suggestions-images/20d9/dbba/20d9dbbaad8ecfeb85240ffcde495244.png"
+          src={logo}
           alt="bg-img"
         />
         <form onSubmit={(e) => submitHandler(e)}>

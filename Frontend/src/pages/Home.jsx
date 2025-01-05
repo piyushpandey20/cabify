@@ -12,6 +12,7 @@ import { SocketContext } from "../context/SocketContext";
 import { UserDataContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import LiveTracking from "../components/LiveTracking";
+import logo from "../img/logo.png"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -213,7 +214,7 @@ const Home = () => {
     <div className="h-screen relative overflow-hidden">
       <img
         className="w-20 absolute left-5 top-5"
-        src="https://logo-suggestion.renderforest.com/suggestions-images/20d9/dbba/20d9dbbaad8ecfeb85240ffcde495244.png"
+        src={logo}
         alt="app-logo"
       />
       <div className="h-screen w-screen">
