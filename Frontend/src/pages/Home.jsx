@@ -242,7 +242,7 @@ const Home = () => {
               submitHandler(e);
             }}
           >
-            <div className="line absolute h-16 w-1 top-[45%] left-10 bg-gray-900 rounded-full"></div>
+            <div className="line absolute h-16 w-1 top-[38%] left-10 bg-gray-900 rounded-full"></div>
             <input
               onClick={() => {
                 setPanelOpen(true);
