@@ -31,9 +31,9 @@ module.exports.getDistanceTime = async (origin, destination) => {
 
   const apiKey = process.env.GOOGLE_MAPS_API;
 
-  const url = `https://maps.gomaps.pro/maps/api/distancematrix/json?origins=${encodeURIComponent(
-    origin
-  )}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
+  const url = `https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${encodeURIComponent(
+    destination
+  )}&origins=${encodeURIComponent(origin)}&key=${apiKey}`;
 
   try {
     const response = await axios.get(url);
